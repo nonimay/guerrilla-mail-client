@@ -10,9 +10,10 @@ io.littleblackdog.guerrillamailclient.Mailbox mailbox = new Mailbox();
 
 To get the address of the mailbox:
 ```
-mailbox.getAddress();
+String emailAddress = mailbox.getAddress();
 ```
 
 To check the maibox:
 ```
 List<io.littleblackdog.guerrillamailclient.models.Mail> = mailbox.checkEmail();
+```
