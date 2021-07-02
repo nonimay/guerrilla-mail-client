@@ -3,7 +3,9 @@ package io.littleblackdog.guerrillamailclient;
 import static com.greghaskins.spectrum.dsl.specification.Specification.context;
 import static com.greghaskins.spectrum.dsl.specification.Specification.describe;
 import static com.greghaskins.spectrum.dsl.specification.Specification.it;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 
 import java.util.List;
 
@@ -17,7 +19,7 @@ import io.littleblackdog.guerrillamailclient.models.Mail;
  * Unit test for Mailbox.
  */
 @RunWith(Spectrum.class)
-public class MailboxSpec {
+public class MailboxTest {
     {
 
         describe("new", () -> {
@@ -25,7 +27,7 @@ public class MailboxSpec {
             final Mailbox mailbox = new Mailbox();
 
             it("should set the email address", () -> {
-                assertThat(mailbox.getAddress()).isNotNull();
+                assertThat(mailbox.getAddress(), is(notNullValue()));
             });
 
         });
@@ -38,18 +40,18 @@ public class MailboxSpec {
 
                 it("should have the welcome mail when checked the first time", () -> {
                     List<Mail> mail = mailbox.checkEmail();
-                    assertThat(mail.size()).isEqualTo(1);
-                    assertThat(mail.get(0).getMail_from()).isEqualTo("no-reply@guerrillamail.com");
+                    assertThat(mail.size(), equalTo(1));
+                    assertThat(mail.get(0).getMail_from(), equalTo("no-reply@guerrillamail.com"));
                 });
 
                 it("should return an empty list when checked the second time", () -> {
                     List<Mail> mail = mailbox.checkEmail();
-                    assertThat(mail).isEmpty();
+                    assertThat(mail, empty());
                 });
 
             });
 
-            context("message sent to the mailbox", () -> {
+            /*context("message sent to the mailbox", () -> {
 
                 final Mailbox mailbox = new Mailbox();
 
@@ -62,11 +64,11 @@ public class MailboxSpec {
                     Thread.sleep(20000);
                     List<Mail> mail = mailbox.checkEmail();
                     System.out.println(mail);
-                    assertThat(mail.size()).isEqualTo(2);
-                    assertThat(mail.get(0).getMail_from()).isEqualTo(gmailSender.getFrom());
-                    assertThat(mail.get(0).getMail_subject()).isEqualTo(SUBJECT);
+                    assertThat(mail.size(), equalTo(2));
+                    assertThat(mail.get(0).getMail_from(), equalTo(gmailSender.getFrom()));
+                    assertThat(mail.get(0).getMail_subject(), equalTo(SUBJECT));
                 });
-            });
+            });*/
         });
 
     }

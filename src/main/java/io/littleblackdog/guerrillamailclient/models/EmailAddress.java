@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class EmailAddress {
 
     private String email_addr;
-    private Long timestamp;
+    private Long email_timestamp;
     private String alias;
     private String sid_token;
 
@@ -24,18 +24,12 @@ public class EmailAddress {
         return email_addr;
     }
 
-    /**
-     * @param timestamp the timestamp to set
-     */
-    public void setTimestamp(Long timestamp) {
-        this.timestamp = timestamp;
+    public Long getEmail_timestamp() {
+        return email_timestamp;
     }
 
-    /**
-     * @return the timestamp
-     */
-    public Long getTimestamp() {
-        return timestamp;
+    public void setEmail_timestamp(Long email_timestamp) {
+        this.email_timestamp = email_timestamp;
     }
 
     /**
